@@ -1,0 +1,4 @@
+<%= form_with(model: @course, url: apply_batches_course_path(id: @course.id), method: :post) do |form| %>
+  <%= select_tag 'course[batch_ids][]', options_from_collection_for_select(@course.eligible_batches(current_user), :id, :name) %>
+  <%= form.submit 'Apply to Batch' %>
+<% end %>

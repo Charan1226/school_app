@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @school.name %>
+</p>
+<% if current_user.admin? || @school.school_admins.include?(current_user) %>
+  <%= link_to 'Edit', edit_school_path(@school) %> |
+  <%= button_to 'Add Admin to School', add_school_admins_school_path(@school), method: :post %> |
+<% end %>
+<%= link_to 'Courses', courses_path(school_id: @school.id) %> |
+<%= link_to 'Back', schools_path %>

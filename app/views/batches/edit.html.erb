@@ -1,0 +1,8 @@
+<h1>Editing Batch</h1>
+
+<%= render 'form', batch: @batch, url: batch_path(id: @batch.id, course_id: @batch.course_id, school_id: @batch.school_id) %>
+
+<% if current_user.admin? || @batch.school.school_admin?(current_user) %>
+  <%= link_to 'Show', batch_path(id: @batch.id, course_id: @batch.course.id, school_id: @batch.school_id) %> |
+<% end %>
+<%= link_to 'Back', batches_path(course_id: @batch.course_id, school_id: @batch.school_id) %>

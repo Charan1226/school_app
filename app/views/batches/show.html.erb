@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @batch.name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @school.name %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @course.name %>
+</p>
+<% if current_user.admin? || @school.school_admin?(current_user) %>
+  <%= link_to 'Edit', edit_batch_path(id: @batch.id, course_id: @batch.course_id, course_id: @batch.course_id) %> |
+  <%= button_to 'Add Students to Batch', add_students_batch_path(@batch), method: :post %> |
+<% end %>
+<%= link_to 'Back', batches_path(course_id: @batch.course_id, school_id: @batch.school_id) %>

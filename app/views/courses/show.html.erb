@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @course.name %>
+</p>
+
+<p>
+  <strong>School:</strong>
+  <%= @course.school_id %>
+</p>
+<% if current_user.admin? || @school.school_admin?(current_user) %>
+  <%= link_to 'Edit', edit_course_path(id: @course.id, school_id: @course.school_id) %> |
+<% end %>
+<% if current_user.student? %>
+  <%= button_to 'Apply for this course', apply_batches_course_path(@course), method: :post %> |
+<% end %>
+<%= link_to 'Back', courses_path(school_id: @course.school_id) %>
+<%= link_to 'Batches', batches_path(course_id: @course.id, school_id: @course.school_id) %>

@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @course.name %> Batches</h1>
+<% if @batches.present? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th colspan="3"></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @batches.each do |batch| %>
+        <tr>
+          <td><%= batch.name %></td>
+          <td><%= link_to 'Show', batch_path(id: batch.id, school_id: batch.school_id, course_id: batch.course_id) %></td>
+          
+          <% if current_user.admin? || batch.school.school_admin?(current_user) %>
+            <td><%= link_to 'Edit', edit_batch_path(id: batch.id, course_id: batch.course_id, school_id: batch.school_id) %></td>
+            <td><%= link_to 'Destroy', batch, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  No Batches for this course.
+<% end %>
+
+<br>
+<% if current_user.admin? || @course.school.school_admin?(current_user) %>
+  <%= link_to 'New Batch', new_batch_path(course_id: @course.id, school_id: @course.school_id) %>
+<% end %>

@@ -1,0 +1,14 @@
+<h2>All Students</h2>
+<%= form_with(model: @batch, url: add_students_batch_path(@batch), method: :post) do |form| %>
+  Select Multiple Students by clicking on each student using control:
+  <%= select_tag 'batch[user_ids][]', options_from_collection_for_select(@batch.eligible_students, :id, :name), { multiple: true } %>
+  <%= form.submit 'Add Students to Batch' %>
+<% end %>
+
+
+<h2>Applied Students</h2>
+<%= form_with(model: @batch, url: add_students_batch_path(@batch), method: :post) do |form| %>
+  Select Multiple Students by clicking on each student using control:
+  <%= select_tag 'batch[user_ids][]', options_from_collection_for_select(@batch.applied_students, :id, :name), { multiple: true } %>
+  <%= form.submit 'Add Students to Batch' %>
+<% end %>

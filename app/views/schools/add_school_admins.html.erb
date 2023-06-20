@@ -1,0 +1,5 @@
+<%= form_with(model: @school, url: add_school_admins_school_path(@school), method: :post) do |form| %>
+  Select Multiple Admins by clicking on each admin using command key:
+  <%= select_tag 'school[user_ids][]', options_from_collection_for_select(@school.eligible_admins, :id, :name), { multiple: true } %>
+  <%= form.submit 'Add Admins to School' %>
+<% end %>
