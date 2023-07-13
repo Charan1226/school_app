@@ -35,3 +35,24 @@
     </ul>
   </div>
 </body>
+
+def dropdown_menu
+  content_tag(:div, class: 'dropdown') do
+    concat link_to('Dropdown Example', '#', class: 'btn btn-primary dropdown-toggle', data: { toggle: 'dropdown' }) { concat content_tag(:span, '', class: 'caret') }
+    concat content_tag(:ul, class: 'dropdown-menu') do
+      concat content_tag(:li) do
+        concat link_to('#') { concat tag(:input, type: 'checkbox') }
+        concat ' HTML'
+      end
+      concat content_tag(:li) do
+        concat link_to('#') { concat tag(:input, type: 'checkbox') }
+        concat ' CSS'
+      end
+      concat content_tag(:li) do
+        concat link_to('#') { concat tag(:input, type: 'checkbox') }
+        concat ' JavaScript'
+      end
+    end
+  end
+end
+
